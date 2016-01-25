@@ -34,9 +34,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVectorMake(0, 0)
         
-        /*eaterFish.physicsBody?.contactTestBitMask=collisionMonsterCategory
-        eaterFish.physicsBody?.contactTestBitMask=collisionGoldCategory*/
-        
         let goldfishAuto = SKAction.runBlock(addGoldfish)
         let waitTime = SKAction.waitForDuration(0.5)
         let sequence = SKAction.sequence([goldfishAuto, waitTime])
