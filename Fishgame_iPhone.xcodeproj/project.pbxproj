@@ -16,7 +16,6 @@
 		560C34421C454D740024C091 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 560C34401C454D740024C091 /* LaunchScreen.storyboard */; };
 		560C344A1C454E920024C091 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 560C34491C454E920024C091 /* images */; };
 		560C344C1C454EAA0024C091 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 560C344B1C454EAA0024C091 /* audio */; };
-		5619DBF41C493F3F009361A2 /* StartGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5619DBF31C493F3F009361A2 /* StartGame.swift */; };
 		56A9F8A01C47EEB500C49934 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A9F89F1C47EEB500C49934 /* GameOverScene.swift */; };
 		56A9F8A21C47FD2C00C49934 /* WinnerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A9F8A11C47FD2C00C49934 /* WinnerScene.swift */; };
 /* End PBXBuildFile section */
@@ -33,7 +32,6 @@
 		560C34431C454D740024C091 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		560C34491C454E920024C091 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		560C344B1C454EAA0024C091 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
-		5619DBF31C493F3F009361A2 /* StartGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartGame.swift; sourceTree = "<group>"; };
 		56A9F89F1C47EEB500C49934 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		56A9F8A11C47FD2C00C49934 /* WinnerScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinnerScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,7 +73,6 @@
 				560C34371C454D740024C091 /* GameScene.swift */,
 				56A9F8A11C47FD2C00C49934 /* WinnerScene.swift */,
 				56A9F89F1C47EEB500C49934 /* GameOverScene.swift */,
-				5619DBF31C493F3F009361A2 /* StartGame.swift */,
 				560C34391C454D740024C091 /* GameViewController.swift */,
 				560C343B1C454D740024C091 /* Main.storyboard */,
 				560C343E1C454D740024C091 /* Assets.xcassets */,
@@ -164,7 +161,6 @@
 				560C343A1C454D740024C091 /* GameViewController.swift in Sources */,
 				56A9F8A01C47EEB500C49934 /* GameOverScene.swift in Sources */,
 				56A9F8A21C47FD2C00C49934 /* WinnerScene.swift in Sources */,
-				5619DBF41C493F3F009361A2 /* StartGame.swift in Sources */,
 				560C34341C454D740024C091 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
