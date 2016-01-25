@@ -1,10 +1,3 @@
-//
-//  GameViewController.swift
-//  Fishgame_iPhone
-//
-//  Created by Maria Kuikka on 12.1.2016.
-//  Copyright (c) 2016 Maria Kuikka. All rights reserved.
-//
 
 import UIKit
 import SpriteKit
