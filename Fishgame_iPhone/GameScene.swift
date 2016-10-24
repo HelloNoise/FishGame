@@ -14,15 +14,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var fishScore=0
     var fishScoreLabel=SKLabelNode(text: "Feasts: 0")
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         
         fishBackground.position = CGPoint(x: frame.size.width*0.5, y: frame.size.height*0.5)
         fishBackground.zPosition = -1
         addChild(fishBackground)
         
         eaterFish.position = CGPoint(x: frame.size.width*0.9, y: frame.size.height * 0.5)
-        eaterFish.physicsBody = SKPhysicsBody(rectangleOfSize: eaterFish.size)
-        eaterFish.physicsBody?.dynamic=true
+        eaterFish.physicsBody = SKPhysicsBody(rectangleOf: eaterFish.size)
+        eaterFish.physicsBody?.isDynamic=true
         eaterFish.physicsBody?.affectedByGravity=false
         eaterFish.physicsBody?.allowsRotation=false
         eaterFish.physicsBody?.categoryBitMask=collisionEaterCategory
@@ -32,36 +32,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(eaterFish)
         
         physicsWorld.contactDelegate = self
-        physicsWorld.gravity = CGVectorMake(0, 0)
+        physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
-        let goldfishAuto = SKAction.runBlock(addGoldfish)
-        let waitTime = SKAction.waitForDuration(0.5)
+        let goldfishAuto = SKAction.run(addGoldfish)
+        let waitTime = SKAction.wait(forDuration: 0.5)
         let sequence = SKAction.sequence([goldfishAuto, waitTime])
-        runAction(SKAction.repeatActionForever(sequence))
+        run(SKAction.repeatForever(sequence))
         
-        let monsterfishAuto = SKAction.runBlock(addMonsterfish)
-        let waitTimeM = SKAction.waitForDuration(1.0)
+        let monsterfishAuto = SKAction.run(addMonsterfish)
+        let waitTimeM = SKAction.wait(forDuration: 1.0)
         let sequenceM = SKAction.sequence([monsterfishAuto, waitTimeM])
-        runAction(SKAction.repeatActionForever(sequenceM))
+        run(SKAction.repeatForever(sequenceM))
        
         addChild(backgroundMusic)
         backgroundMusic.autoplayLooped = true
         
         fishScoreLabel.position = CGPoint(x: frame.size.width*0.1, y: frame.size.height*0.15)
-        fishScoreLabel.fontColor=SKColor.yellowColor()
+        fishScoreLabel.fontColor=SKColor.yellow
         fishScoreLabel.fontName="Arial"
         fishScoreLabel.fontSize=30
         addChild(fishScoreLabel)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first! as UITouch
-        let touchLocation = touch.locationInNode(self)
-        let moveTo = SKAction.moveTo(touchLocation, duration: 0.5)
-        eaterFish.runAction(moveTo)
+        let touchLocation = touch.location(in: self)
+        let moveTo = SKAction.move(to: touchLocation, duration: 0.5)
+        eaterFish.run(moveTo)
     }
     
-    func randomNumber(min min: CGFloat, max: CGFloat) -> CGFloat {
+    func randomNumber(min: CGFloat, max: CGFloat) -> CGFloat {
         let random = CGFloat(Float(arc4random()) / 0xFFFFFFFF)
         return random * (max - min) + min
     }
@@ -69,15 +69,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func addGoldfish() {
         let goldFish = SKSpriteNode(imageNamed: "Goldfish")
         
-        goldFish.physicsBody=SKPhysicsBody(rectangleOfSize: goldFish.size)
-        goldFish.physicsBody?.dynamic=false
+        goldFish.physicsBody=SKPhysicsBody(rectangleOf: goldFish.size)
+        goldFish.physicsBody?.isDynamic=false
         goldFish.physicsBody?.categoryBitMask = collisionGoldCategory
         goldFish.physicsBody?.contactTestBitMask = collisionEaterCategory
 
         goldFish.position = CGPoint(x: frame.size.width*0.01, y: (frame.size.height+goldFish.size.height)*randomNumber(min: 0, max: 1))
         
-        let moveToX = SKAction.moveToX(size.width+goldFish.size.width, duration: (5))
-        goldFish.runAction(moveToX)
+        let moveToX = SKAction.moveTo(x: size.width+goldFish.size.width, duration: (5))
+        goldFish.run(moveToX)
         
         addChild(goldFish)
     }
@@ -85,24 +85,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func addMonsterfish() {
         let monsterFish = SKSpriteNode(imageNamed: "monsterFish")
         
-        monsterFish.physicsBody=SKPhysicsBody(rectangleOfSize: monsterFish.size)
-        monsterFish.physicsBody?.dynamic=false
+        monsterFish.physicsBody=SKPhysicsBody(rectangleOf: monsterFish.size)
+        monsterFish.physicsBody?.isDynamic=false
         monsterFish.physicsBody?.categoryBitMask = collisionMonsterCategory
         monsterFish.physicsBody?.contactTestBitMask = collisionEaterCategory
         
         monsterFish.position = CGPoint(x: frame.size.width*0.01, y: (frame.size.height+monsterFish.size.height)*randomNumber(min: 0, max: 1))
         
-        let moveToX = SKAction.moveToX(size.width+monsterFish.size.width, duration: (4))
-        monsterFish.runAction(moveToX)
+        let moveToX = SKAction.moveTo(x: size.width+monsterFish.size.width, duration: (4))
+        monsterFish.run(moveToX)
         
         addChild(monsterFish)
     }
     
-    func eatenGoldfish(goldfish: SKSpriteNode, eaterfish: SKSpriteNode) {
+    func eatenGoldfish(_ goldfish: SKSpriteNode, eaterfish: SKSpriteNode) {
         goldfish.removeFromParent()
     }
     
-    func didBeginContact(contact: SKPhysicsContact) {
+    func didBegin(_ contact: SKPhysicsContact) {
         var firstBody = SKPhysicsBody()
         var secondBody = SKPhysicsBody()
         
@@ -115,15 +115,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if firstBody.categoryBitMask == collisionEaterCategory && secondBody.categoryBitMask == collisionGoldCategory {
-            fishScore++
+            fishScore += 1
             if fishScore >= 40 {
                 backgroundMusic.removeFromParent()
                 let winnerScene: WinnerScene=WinnerScene(size: CGSize(width: 1136, height: 640))
-                winnerScene.scaleMode = .AspectFill
-                self.view?.presentScene(winnerScene, transition: SKTransition.doorsOpenHorizontalWithDuration(1.0))
+                winnerScene.scaleMode = .aspectFill
+                self.view?.presentScene(winnerScene, transition: SKTransition.doorsOpenHorizontal(withDuration: 1.0))
             }
             self.fishScoreLabel.text=(text: "Feasts: \(fishScore)")
-            runAction(SKAction.playSoundFileNamed("audio/Bling.wav", waitForCompletion: false))
+            run(SKAction.playSoundFileNamed("audio/Bling.wav", waitForCompletion: false))
             eatenGoldfish(secondBody.node as! SKSpriteNode, eaterfish: firstBody.node as! SKSpriteNode)
             
         }
@@ -131,7 +131,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             eaterFish.removeFromParent()
             backgroundMusic.removeFromParent()
             let gameOverScene: GameOverScene=GameOverScene(size: CGSize(width: 1136, height: 640))
-            self.view?.presentScene(gameOverScene, transition: SKTransition.doorsOpenHorizontalWithDuration(1.0))
+            self.view?.presentScene(gameOverScene, transition: SKTransition.doorsOpenHorizontal(withDuration: 1.0))
         }
     }
 }

@@ -115,6 +115,7 @@
 					560C342F1C454D740024C091 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = P233L696T3;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -279,6 +280,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mee.Fishgame-iPhone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -293,6 +295,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mee.Fishgame-iPhone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
